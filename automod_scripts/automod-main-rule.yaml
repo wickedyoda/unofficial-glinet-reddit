@@ -82,18 +82,57 @@ comment: |
 
 ---
 
-# Auto-lock all approved Affiliated Announcement posts
-type: submission
-flair_text: ["GL.iNet Announcements"]
-set_locked: true
+# RULE 5: Auto-approve trusted GL.iNet domains
+type: link submission
+domain:
+  - "admon.in.ua"
+  - "github.com"
+  - "gl-inet.com"
+  - "gl-inet.net"
+  - "goodcloud.xyz"
+  - "remotetohome.io"
+  - "thewirednomad.com"
+  - "traveryates.com"
+  - "twy4.us"
+  - "wickedyoda.com"
+action: approve
+action_reason: "Trusted domain allowlist."
 
 ---
 
-# RULE 5: Remove comments from anyone except OP on Affiliated posts
-type: comment
-parent_submission:
-  flair_text: ["GL.iNet Announcements"]
-author:
-  is_submitter: false
-action: remove
-action_reason: "Comments restricted on official announcement posts."
+# RULE 6: Send non-trusted link submissions to moderator review
+type: link submission
+~domain:
+  - "admon.in.ua"
+  - "github.com"
+  - "gl-inet.com"
+  - "gl-inet.net"
+  - "goodcloud.xyz"
+  - "remotetohome.io"
+  - "thewirednomad.com"
+  - "traveryates.com"
+  - "twy4.us"
+  - "wickedyoda.com"
+action: filter
+action_reason: "Non-trusted domain requires moderator approval."
+comment_stickied: true
+comment_locked: true
+comment: |
+  Hi u/{{author}}, your post has not been deleted, but it does require moderator approval before it can be approved for the subreddit.
+
+  The linked domain `{{domain}}` is not on the trusted domain allowlist, so the post has been sent to the mod queue for manual review.
+
+  No further action is required from you right now unless a moderator contacts you for more information.
+message: |
+  Hi {{author}},
+
+  Your post has not been deleted, but it has been sent to the moderator queue for review because the linked domain `{{domain}}` is not on the trusted allowlist.
+
+  A moderator will review it and approve it if it meets subreddit requirements.
+modmail_subject: "Non-trusted domain submission pending review: {{domain}}"
+modmail: |
+  A new link submission requires manual review because the domain `{{domain}}` is not on the trusted allowlist.
+
+  Author: u/{{author}}
+  Title: {{title}}
+  URL: {{url}}
