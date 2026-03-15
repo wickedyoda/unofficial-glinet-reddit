@@ -37,8 +37,9 @@ The validator checks YAML parsing, duplicate keys, rule/action/type constraints,
 - Remind `questions/support` submissions to mark posts as solved
 - Remind `news`, `questions/support`, `discussion`, and `question/support- Solved` posts to search first
 - Restrict `GL.iNet Announcements` flair to approved accounts
-- Lock approved `GL.iNet Announcements` posts
-- Remove comments from non-OP users on `GL.iNet Announcements` posts
+- Leave `GL.iNet Announcements` posts open for normal discussion
+- Auto-approve trusted link submissions from `admon.in.ua`, `github.com`, `gl-inet.com`, `gl-inet.net`, `goodcloud.xyz`, `remotetohome.io`, `thewirednomad.com`, `traveryates.com`, `twy4.us`, and `wickedyoda.com` and their subdomains
+- Filter non-trusted link submissions to mod queue, notify the author, and send modmail for manual review
 
 ## GitHub Actions validation
 
