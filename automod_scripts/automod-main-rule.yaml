@@ -1,5 +1,3 @@
-# Formatting note: Do not use decorative hash separators like `##########`.
-# Keep a single `# RULE ...` title line and separate rules with `---`.
 # RULE 1: Remove comments from low karma / new accounts
 type: comment
 author:
@@ -67,13 +65,13 @@ comment: |
 
 ---
 
-# RULE 4: Restrict "GL.iNet Affiliated Announcements" Flair
+# RULE 4: Restrict "GL.iNet Announcements" Flair
 
 # Remove unauthorized users using restricted flair
 type: submission
-flair_text: ["GL.iNet Affiliated Announcements"]
+flair_text: ["GL.iNet Announcements"]
 author:
-  name (regex, full-exact): ["^(?!wickedwarlock84$|NationalOwl9561$|RemoteToHome-io$|GLiNet_WiFi$|robotluo$|GrandWizardZippy$|Valuable-Speaker-312$).*"]
+  name (regex, full-exact): ["^(?!wickedwarlock84$|GLiNet_WiFi$).*"]
 action: remove
 action_reason: "Restricted flair misuse: GL.iNet Affiliated Announcements"
 comment_stickied: true
@@ -86,7 +84,7 @@ comment: |
 
 # Auto-lock all approved Affiliated Announcement posts
 type: submission
-flair_text: ["GL.iNet Affiliated Announcements"]
+flair_text: ["GL.iNet Announcements"]
 set_locked: true
 
 ---
@@ -94,7 +92,7 @@ set_locked: true
 # RULE 5: Remove comments from anyone except OP on Affiliated posts
 type: comment
 parent_submission:
-  flair_text: ["GL.iNet Affiliated Announcements"]
+  flair_text: ["GL.iNet Announcements"]
 author:
   is_submitter: false
 action: remove
