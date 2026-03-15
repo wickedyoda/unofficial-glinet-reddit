@@ -31,6 +31,15 @@ The validator checks YAML parsing, duplicate keys, rule/action/type constraints,
 - Separate rules with lines containing exactly `---`
 - Do not use decorative hash separator lines like `##########` above or below rule titles
 
+## Current rules
+
+- Remove comments from accounts younger than 5 days or with combined karma under 20
+- Remind `questions/support` submissions to mark posts as solved
+- Remind `news`, `questions/support`, `discussion`, and `question/support- Solved` posts to search first
+- Restrict `GL.iNet Announcements` flair to approved accounts
+- Lock approved `GL.iNet Announcements` posts
+- Remove comments from non-OP users on `GL.iNet Announcements` posts
+
 ## GitHub Actions validation
 
 The `AutoMod Status Check` workflow runs:
