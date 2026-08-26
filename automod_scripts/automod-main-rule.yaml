@@ -12,7 +12,7 @@
 # (e.g. gl-inet.com covers forum.gl-inet.com, dl.gl-inet.com).
 #
 # Known gap (accepted): URLs inside TEXT posts are not
-# checked against the allowlist, only link posts only.  
+# checked against the allowlist, only link posts.
 # (Filtering text posts requires truly ugly regex.)
 ############################################################
 
