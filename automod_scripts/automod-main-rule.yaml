@@ -1,22 +1,42 @@
-# RULE 1: Remove comments from low karma / new accounts
+
+
+                ############################################################
+# r/GlInet AutoModerator configuration
+#
+# MAINTENANCE NOTE: The trusted-domain allowlist appears in
+# TWO places: Rule 5 (approve) and Rule 6 (filter). Any
+# allowlist change must be made in BOTH rules. Lists are
+# kept alphabetically sorted so a mismatch is easy to spot.
+#
+# Subdomains match automatically for the `domain` field
+# (e.g. gl-inet.com covers forum.gl-inet.com, dl.gl-inet.com).
+#
+# Known gap (accepted): URLs inside TEXT posts are not
+# checked against the allowlist, only link posts only.  
+# (Filtering text posts requires truly ugly regex.)
+############################################################
+
+# RULE 1: Remove comments from low-karma OR new accounts.
+# satisfy_any_threshold makes the two author checks an OR.
 type: comment
 author:
   account_age: "< 5 days"
   combined_karma: "< 20"
+  satisfy_any_threshold: true
 action: remove
-action_reason: "User has less than 20 karma and an account younger than 5 days."
+action_reason: "Account younger than 5 days or under 20 combined karma."
 comment: |
-  Hi u/{{author}}, your comment has been removed because your account is less than 5 days old and/or has under 20 total karma.
+  Hi u/{{author}}, your comment has been removed because your account is less than 5 days old or has under 20 total karma.
   This is an anti-spam measure.
 
   If you believe your comment is legitimate, please send a ModMail:
   https://www.reddit.com/message/compose?to=/r/glinet
 
-  A moderator can manually approve it. Once your account has aged and gained karma, you’ll be able to comment freely. Thanks for understanding!
+  A moderator can manually approve it. Once your account has aged and gained karma, you'll be able to comment freely. Thanks for understanding!
 message: |
   Hi {{author}},
 
-  Your comment in r/glinet was automatically removed because your account is less than 5 days old and/or has under 20 total karma.
+  Your comment in r/glinet was automatically removed because your account is less than 5 days old or has under 20 total karma.
 
   If your comment was legitimate, please contact the moderators:
   https://www.reddit.com/message/compose?to=/r/glinet
@@ -25,55 +45,52 @@ message: |
 
 ---
 
-# RULE 2: Encourage users to mark solved posts
+# RULE 2: Single combined comment on question/support posts
+# (search reminder + solved-flair instructions + Discord).
 type: submission
 flair_text: ["questions/support"]
 comment: |
   Hi u/{{author}}, thanks for posting your question!
 
-  If your issue gets resolved, please help others by marking your post as Solved.
+  **Before waiting on an answer:** please search the subreddit — many common questions are already solved.
+  Search guide: https://www.reddit.com/r/GlInet/wiki/index/searchingwithin
 
-  How to do it:
+  **When your issue is resolved**, help others by marking the post as Solved:
   - Click the three dots "..." under your post title
   - Choose "Add Flair"
   - Select the "question/support- Solved" flair
-  - Use the support template located here: https://www.reddit.com/r/GlInet/wiki/index/kb/asking_for_help
 
-  Marking solved posts makes it easier for the community to find answers.
+  Support template: https://www.reddit.com/r/GlInet/wiki/index/kb/asking_for_help
 
   Need more help? Join the GL.iNet Discord:
   https://discord.gg/Aaqf4CZMut
 
 ---
 
-# RULE 3: Reminder to search before posting
+# RULE 3: Search-before-posting reminder for non-support flairs.
 type: submission
 flair_text:
   - "news"
-  - "questions/support"
   - "discussion"
-  - "question/support- Solved"
 comment: |
   Hi u/{{author}}, just a quick reminder:
 
-  Please search the subreddit before posting — many common questions have already been answered.
+  Please search the subreddit before posting — many common topics have already been covered.
 
   Search guide:
   https://www.reddit.com/r/GlInet/wiki/index/searchingwithin
 
-  This helps keep the community organized and easier to navigate.
-
 ---
 
-# RULE 4: Restrict "GL.iNet Announcements" Flair
-
-# Remove unauthorized users using restricted flair
+# RULE 4: Restrict "GL.iNet Announcements" flair to approved accounts.
 type: submission
 flair_text: ["GL.iNet Announcements"]
 author:
-  name (regex, full-exact): ["^(?!wickedwarlock84$|GLiNet_WiFi$).*"]
+  ~name:
+    - "wickedwarlock84"
+    - "GLiNet_WiFi"
 action: remove
-action_reason: "Restricted flair misuse: GL.iNet Affiliated Announcements"
+action_reason: "Restricted flair misuse: GL.iNet Announcements"
 comment_stickied: true
 comment_locked: true
 comment: |
@@ -82,15 +99,23 @@ comment: |
 
 ---
 
-# RULE 5: Auto-approve trusted GL.iNet domains
+# RULE 5: Auto-approve link posts to trusted domains.
+# >>> Keep this list IDENTICAL to Rule 6 <
 type: link submission
 domain:
   - "admon.in.ua"
+  - "cgnat.xyz"
   - "github.com"
   - "gl-inet.com"
   - "gl-inet.net"
+  - "glkvm.com"
+  - "glkvm.top"
   - "goodcloud.xyz"
+  - "icanhazvpn.com"
+  - "redd.it"
+  - "reddit.com"
   - "remotetohome.io"
+  - "techrelay.xyz"
   - "thewirednomad.com"
   - "traveryates.com"
   - "twy4.us"
@@ -100,15 +125,23 @@ action_reason: "Trusted domain allowlist."
 
 ---
 
-# RULE 6: Send non-trusted link submissions to moderator review
+# RULE 6: Filter link posts to non-trusted domains for mod review.
+# >>> Keep this list IDENTICAL to Rule 5 <
 type: link submission
 ~domain:
   - "admon.in.ua"
+  - "cgnat.xyz"
   - "github.com"
   - "gl-inet.com"
   - "gl-inet.net"
+  - "glkvm.com"
+  - "glkvm.top"
   - "goodcloud.xyz"
+  - "icanhazvpn.com"
+  - "redd.it"
+  - "reddit.com"
   - "remotetohome.io"
+  - "techrelay.xyz"
   - "thewirednomad.com"
   - "traveryates.com"
   - "twy4.us"
@@ -118,17 +151,11 @@ action_reason: "Non-trusted domain requires moderator approval."
 comment_stickied: true
 comment_locked: true
 comment: |
-  Hi u/{{author}}, your post has not been deleted, but it does require moderator approval before it can be approved for the subreddit.
+  Hi u/{{author}}, your post has not been deleted, but it requires moderator approval before it appears on the subreddit.
 
   The linked domain `{{domain}}` is not on the trusted domain allowlist, so the post has been sent to the mod queue for manual review.
 
-  No further action is required from you right now unless a moderator contacts you for more information.
-message: |
-  Hi {{author}},
-
-  Your post has not been deleted, but it has been sent to the moderator queue for review because the linked domain `{{domain}}` is not on the trusted allowlist.
-
-  A moderator will review it and approve it if it meets subreddit requirements.
+  No further action is required from you unless a moderator contacts you for more information.
 modmail_subject: "Non-trusted domain submission pending review: {{domain}}"
 modmail: |
   A new link submission requires manual review because the domain `{{domain}}` is not on the trusted allowlist.
@@ -136,3 +163,38 @@ modmail: |
   Author: u/{{author}}
   Title: {{title}}
   URL: {{url}}
+
+---
+
+# RULE 7: Only approved accounts may use the "Gl.iNet Employee" flair.
+# Note: flair_text matches the full flair exactly by default.
+type: any
+author:
+  flair_text: "Gl.iNet Employee"
+  ~name:
+    - "GLiNet_WiFi"
+    - "SpecialistForever275"
+action: remove
+action_reason: "Unauthorized use of GL.iNet Employee flair"
+message: |
+  Hello,
+  Only GL pre-approved Reddit accounts are authorized to use the **Gl.iNet Employee** flair.
+
+  Your {{kind}} has been removed. If you believe this was in error, please contact the moderation team.
+modmail: |
+  AutoModerator removed a {{kind}} from u/{{author}} because they have the **Gl.iNet Employee** flair but are not an approved account.
+
+---
+
+# RULE 8: Auto-approve posts and comments from trusted users.
+# Note: does NOT bypass Rule 6 — filter wins over approve, so
+# these users' non-allowlisted links still go to the modqueue.
+type: any
+author:
+  name: [GLiNet_WiFi, SpecialistForever275, WillQiu, LiteratureThink5259, Inevitable-Yak1688, Lumpy-Account-485]
+action: approve
+
+---
+
+# EOF
+              
