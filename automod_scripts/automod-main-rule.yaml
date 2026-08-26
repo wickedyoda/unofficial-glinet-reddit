@@ -67,7 +67,7 @@ comment: |
 
 ---
 
-# RULE 3: Search-before-posting reminder for non-support flairs.
+# RULE 3: Search-before-posting reminder for news and discussion flairs.
 type: submission
 flair_text:
   - "news"
