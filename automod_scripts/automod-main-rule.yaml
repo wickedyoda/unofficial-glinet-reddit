@@ -1,10 +1,7 @@
-
-
-                ############################################################
 # r/GlInet AutoModerator configuration
 #
 # MAINTENANCE NOTE: The trusted-domain allowlist appears in
-# TWO places: Rule 5 (approve) and Rule 6 (filter). Any
+# TWO places: Rule 6 (approve) and Rule 7 (filter). Any
 # allowlist change must be made in BOTH rules. Lists are
 # kept alphabetically sorted so a mismatch is easy to spot.
 #
@@ -14,8 +11,6 @@
 # Known gap (accepted): URLs inside TEXT posts are not
 # checked against the allowlist, only link posts.
 # (Filtering text posts requires truly ugly regex.)
-############################################################
-
 # RULE 1: Remove comments from low-karma OR new accounts.
 # satisfy_any_threshold makes the two author checks an OR.
 type: comment
@@ -198,15 +193,20 @@ modmail: |
 
 ---
 
-# RULE 9: Auto-approve posts and comments from trusted users.
-# Note: does NOT bypass Rule 7 — filter wins over approve, so
-# these users' non-allowlisted links still go to the modqueue.
-type: any
+# RULE 9: Auto-approve comments from trusted users.
+type: comment
 author:
   name: [GLiNet_WiFi, SpecialistForever275, WillQiu, LiteratureThink5259, Inevitable-Yak1688, Lumpy-Account-485]
 action: approve
 
 ---
 
-# EOF
-              
+# RULE 10: Auto-approve self-post submissions from trusted users.
+# Link submissions are intentionally excluded so Rule 7 continues
+# to control non-allowlisted domains for these accounts as well.
+type: submission
+is_self: true
+author:
+  name: [GLiNet_WiFi, SpecialistForever275, WillQiu, LiteratureThink5259, Inevitable-Yak1688, Lumpy-Account-485]
+action: approve
+
