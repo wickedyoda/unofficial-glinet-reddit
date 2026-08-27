@@ -1,0 +1,92 @@
+
+---
+# Comment age and karma before posting. 
+type: comment
+author:
+    account_age: "< 5 days"
+    combined_karma: "< 20"
+action: remove
+action_reason: "User has less than 20 karma and an account younger than 5 days, please use ModMail to speak to a mod and have your post approved manually."
+
+---
+
+# Require text post bodies to be at least 250 characters.
+type: text submission
+body_shorter_than: 250
+action: remove
+action_reason: "Post body is under 250 characters."
+comment: |
+    Your post was automatically removed because the body is under 250 characters.
+
+    Please edit your post to add more detail before posting again.
+
+---
+
+# Preventing Comment Trolls
+    author:
+        comment_karma: "< -2"
+    action: remove
+    action_reason: "You have an insufficient karma rating. To block troublemakers, we require a certain karma rating.  Please improve your karma rating by posting in other sub-reddits before posting in this sub-reddit. Thank you."
+
+---
+
+# Phone Number Doxxing Prevention
+    title+body (regex, includes): ['(?#INT)(\+(?![\s\(]*\d{4})|\b011)[\(\) ._-]{0,3}(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|4[987654310]|3[9643210]|2[70]|7|1)\b([\(\) ._-]{0,3}\d){5,14}\b', '(?#NA)\(?\b1?\d{3}[\) ._-]{1,3}\d{3}[ ._-]{1,3}\d{4}\b', '(?#UK)\b(?<!\bu/)(?<!\d\.)0(1\d\d(\s*\d){7}|1\d{3}(\s*\d){6}|1\d1(\s*\d){7}|11\d(\s*\d){7}|2\d(\s*\d){8}|169\s*77(\s*\d){4}|1\d{3}(\s*\d){5}|3\d\d(\s*\d){7}|7\d(\s*\d){8}|8\d\d(\s*\d){6,7})\b']
+    ~body (regex): ['(0118\W+999\W+8[18]1|999\W+119\W+7253)', '(?<=\$)\d+(\.\d\d)?[^\w,.]*[+-][^\w,.]*\d+', '(https?://|www\.)\S*([\(\)._-]{0,3}\d){5}\w*', '000.000.0000', '1024\W+2048', '111.111.1111', '222.222.2222', '281\W+330.8004', '505\W+503.4455', '678.999.8212', '800\W+273.8255', '800\W+799.7233', '999.999.9999', '\d*1\W?2\W?3\W?4\W?5\W?6\W?7\W?8\W?9\d*', '\d{3}\W+555\W\d{4}', '\d{3}\W+867.5309', '\w*\d[\)\s]*=\W*\d\w*']
+    author:
+      is_contributor: false
+    action: filter
+    action_reason: "Phone number detected [{{match}}]. To protect against doxxing, we do not allow phone numbers to be publicly displayed. You can contact the mod team to discuss this further."
+
+---
+
+# Email Doxxing Prevention
+    title+body (regex): ['(?!(abuse|help|info|no-?reply|phishing|service|spoof|support)\@)[\w!#$%&\x27*+\-./=?\^\x60{|}~]+\@([\w-]{1,64}\.)+([a-z]{2,16}|xn--[a-z0-9-]{1,60})']
+    ~title+body#whitelist: [okay.address1@example.com, okay.address2@example.com]
+    action: remove
+    action_reason: "Email address detected [{{match}}]. To protect against doxxing, we do not allow phone numbers to be publicly displayed.  You can contact the mod team to discuss this further."
+
+---
+
+# Banned keyword in titles or comments
+    title+body: [$nap, 18f4m, 18m, 18m for f, 18m in, 18m4a, 19f4m, 19m, 19m for f, 19m4a, 20f4m, 20m for f, 20m4a, 21f4m, 21m for f, 21m4a, 22f4m, 22m for f, 22m4a, 23f4m, 23m for f, 23m4a, 24f4m, 24m for f, 24m4a, 25f4m, 25m4a, 26f4m, 26m4a, 27m4a, a daddy, a release, add her, add me, add me on, add my, add on, add up, affair, arrow, arrow up, asf, at the Inn, at the suite, auto reply, autoreply, available for fun, bbbj, BBJ, biden, bio, bj hmu, bj tonight, body massage, book, bored, bored and horny, bored and lonely, bouncing, breed, cam, car, cardate, cashapp, charge, cheat, cheating, cherry, collab, content, cp, creampie, creamy pussy, create, creator, creators, cub, cuckold fantasy, cum, daddies, dead bed, dead bedroom, discord, DL, donate, donation, down horny, drain my, drain your, drgs, drip, dropbox, dtf ig, dtf male, dtf rn, escort, escorts, facetime, fag, faggot, fansly, faqqot, fee, feeling lonely, fees, film, finance, finances, financial, financial assistance, fired, foot fetish, for hookup, for rate, for rates, full video, fun anal, fun cheating, get my cock, gfe, giving some good, handle it, hey daddy, high and horny, hmu on snap, hook, hooker, hookup service, horny asf, horny sluts, host and drive, Hosting at the suite, hrony, humiliate, husband is gone, in call, incall, inn, jerk, jerk bud, know her, leak, leaks, lonely and horny, looking to watch, m bull, maga, make content, massage, massage service, massage services, masseuse, masturbating , mega, menu, meth, milk, milk your, miss me, momma, mommy, morning, morning quickie, my of, my page, my pussy, my service, my sexy pussy, my wet, nasty bj, need a bj, need my cock, need release, needs release, never know, nuru, nut off, only fan, only fans, onlyfan, onlyfans, orgy party, orgy sex, out call, outcall, p2p, part of me, party favors, party ongoing, partynplay, paytoplay, peek at, pics and videos, pimps, PNP, premium, price, prices, ptop, quick bj, quick response, rate, rates, react, sales, sb, sell, seller, selling, sending nudes, sext, sexting, shady, sissy cuckhold, sissy cuckold, sit on my face, ski, skiing, slave training, slut horny, sm, smash or pass, sn ap, sn*p, sn@p, sna, sna p, snap, sñap, snap:, snapchat, sñapchat, snapchat/, sneaky link, sneaky links, sneaky meet, some stress, spank my, special nudes, spoil, spoil, spoiled, spun, squirt all over, still fuckable, stop scrolling, sub, sugar, sugarbaby, sugardaddy, sugarmama, sugarmommy, swedish, SWINGERS MASK PARTY, swipe 4, swipe for, telegr, telegram, telegrm, telgr, telgrm, terms, Text me on kik, tg, the hotel suite, the rate, the rates, there’s a charge, tlgrm, trade, trannie, tranny, trump, try to fuck, twerking, up for nude, up vote, upvot, upvote, upvotes, upvte, used as a cuck, vcard, video, virgin, virginity, wet af, whoever likes this, wife is gone, wife will never, your first move, your fuck, F20 I'm, F21 I'm, F22 I'm, F23 I'm, F24 I'm, F25 I'm, HMU I'm DTF, collaborator, collaborators, to pay, broke up, broken up, make money] 
+    action: remove
+    action_reason: "Your submission has been flagged by the community for moderator review because of banned keyword usage.  Please ensure you are following all of the sub-reddit rules.  If you feel an error has been made, please contact the mods and we can discuss your case."
+
+
+---
+
+# Autoclean posts after they receive 2 reports
+    reports: 2
+    action: remove
+    modmail: The above {{kind}} by /u/{{author}} was flagged by the community for review. Please investigate and ensure that this action was correct.
+    action_reason: "Your submission has been flagged by the community for moderator review.  Please ensure you are following all of the sub-reddit rules.  If you feel an error has been made, please contact the mods and we can discuss your case."
+
+---
+
+# Only allow cross posts from whitelisted subreddits
+    type: crosspost submission
+    crosspost_subreddit:
+        ~name: [swingers|GeorgiaSwingers|LouisianaSwingers|IllinoisSwingers|PASwingers|KansasSwingers|MNSwingers|KYSwingers|NewMexicoSwingers|SwingerNewbies|SCSwingers|CTSwingers|MaineSwingers|IdahoSwingers|TennesseeSwingers|WVSwingers|HawaiiSwingers|VASwingers|MSSwingers|MontanaSwingers|NHSwingers|OHSwingers|MASwingers|ALSwingers|RISwingers|WISwingers|DakotaSwingers|MOSwinging|Delaware_Swingers|Maryland_Swingers|NEswingers|VTSwingers|swingersr4r|SwingersGW|LouisianaHookup]
+    message: |
+        Your submission was automatically removed because we have temporarily disabled cross-posting due to a recent surge in spam.  We apologize for this inconvenience and thank you for your understanding.
+    action: remove
+    action_reason: "Crosspost from unapproved subreddit"
+
+---
+
+body+title+url (includes): ['http', '.com', '.net', '.org']
+~domain: ["i.redd.it", "v.redd.it", "reddit.com", "i.imgur.com","imgur.com", "redgifs.com"]
+comment: "Due to a recent surge in spam we are not allowing links except to safe domains.  If you think your link should be added to the safe list, please contact the mod team. Thank you for your understanding."
+action: remove
+action_reason: "Link removal for spam protection"
+
+---
+
+type: submission
+author:
+    combined_subreddit_karma: "< 5"
+comment: |
+    Welcome to the Louisiana swingers community! We’re glad you joined us on your lifestyle journey. Click here for helpful [swinger information](https://www.reddit.com/r/LouisianaSwingers/wiki/index/).   Remember to read the [community rules](https://www.reddit.com/r/LouisianaSwingers/about/rules).    Happy swinging :)
+
+---

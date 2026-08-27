@@ -45,7 +45,19 @@ message: |
 
 ---
 
-# RULE 2: Single combined comment on question/support posts
+# RULE 2: Remove text posts with bodies under 250 characters.
+type: text submission
+body_shorter_than: 250
+action: remove
+action_reason: "Post body under 250 characters."
+comment: |
+  Hi u/{{author}}, your post has been removed because the body is under 250 characters.
+
+  Please add more detail about your setup, what you have tried, and what result you expected before posting again.
+
+---
+
+# RULE 3: Single combined comment on question/support posts
 # (search reminder + solved-flair instructions + Discord).
 type: submission
 flair_text: ["questions/support"]
@@ -67,7 +79,7 @@ comment: |
 
 ---
 
-# RULE 3: Search-before-posting reminder for news and discussion flairs.
+# RULE 4: Search-before-posting reminder for news and discussion flairs.
 type: submission
 flair_text:
   - "news"
@@ -82,7 +94,7 @@ comment: |
 
 ---
 
-# RULE 4: Restrict "GL.iNet Announcements" flair to approved accounts.
+# RULE 5: Restrict "GL.iNet Announcements" flair to approved accounts.
 type: submission
 flair_text: ["GL.iNet Announcements"]
 author:
@@ -99,8 +111,8 @@ comment: |
 
 ---
 
-# RULE 5: Auto-approve link posts to trusted domains.
-# >>> Keep this list IDENTICAL to Rule 6 <
+# RULE 6: Auto-approve link posts to trusted domains.
+# >>> Keep this list IDENTICAL to Rule 7 <
 type: link submission
 domain:
   - "admon.in.ua"
@@ -125,8 +137,8 @@ action_reason: "Trusted domain allowlist."
 
 ---
 
-# RULE 6: Filter link posts to non-trusted domains for mod review.
-# >>> Keep this list IDENTICAL to Rule 5 <
+# RULE 7: Filter link posts to non-trusted domains for mod review.
+# >>> Keep this list IDENTICAL to Rule 6 <
 type: link submission
 ~domain:
   - "admon.in.ua"
@@ -166,7 +178,7 @@ modmail: |
 
 ---
 
-# RULE 7: Only approved accounts may use the "Gl.iNet Employee" flair.
+# RULE 8: Only approved accounts may use the "Gl.iNet Employee" flair.
 # Note: flair_text matches the full flair exactly by default.
 type: any
 author:
@@ -186,8 +198,8 @@ modmail: |
 
 ---
 
-# RULE 8: Auto-approve posts and comments from trusted users.
-# Note: does NOT bypass Rule 6 — filter wins over approve, so
+# RULE 9: Auto-approve posts and comments from trusted users.
+# Note: does NOT bypass Rule 7 — filter wins over approve, so
 # these users' non-allowlisted links still go to the modqueue.
 type: any
 author:
